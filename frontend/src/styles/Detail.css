@@ -1,0 +1,32 @@
+table,th,td {
+    border-style: solid;
+    border-color: #96D4D4;
+    text-align: center;
+}
+.delete-button {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f; /* Darker red */
+}
+.modify-button {
+    background-color: #767070; /* Red */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 50px;
+  }
+  
+  .modify-button:hover {
+    background-color: rgb(129, 124, 124); /* Darker red */
+  }
