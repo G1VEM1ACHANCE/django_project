@@ -16,6 +16,7 @@ function Modify() {
       }
     
     const updateNote = async(id) => {
+        console.log(eventdetail)
         eventdetail.masterunits.map((unit,index) => {
             if(unit.unit_name === "")
                 eventdetail.masterunits.pop(index)
@@ -225,8 +226,8 @@ function Modify() {
                                 <td>是否售票</td>
                                 <td>
                                     <select data-index={index} name="on_sales" value={info.on_sales} onChange={handle_show_info}>
-                                        <option value="true">Y</option>
-                                        <option value="false">N</option>
+                                        <option value="Y">Y</option>
+                                        <option value="N">N</option>
                                     </select>
                                 </td>
                             </tr>
@@ -244,7 +245,7 @@ function Modify() {
                             </tr>
                             <tr>
                                 <td>經度</td>
-                                <td><input type="number" step="0.0001" data-index={index} name="longtitude" value={info.longtitude} onChange={handle_show_info} /></td>
+                                <td><input type="number" step="0.0001" data-index={index} name="longitude" value={info.longitude} onChange={handle_show_info} /></td>
                             </tr>
                             <tr>
                                 <td>售票說明</td>

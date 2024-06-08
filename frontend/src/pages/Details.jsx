@@ -147,8 +147,8 @@ function Details({handleModify}) {
                         <td>{info.latitude}</td>
                     </tr>
                     <tr>
-                        <td>精度</td>
-                        <td>{info.longtitude}</td>
+                        <td>經度</td>
+                        <td>{info.longitude}</td>
                     </tr>
                     <tr>
                         <td>售票說明</td>
