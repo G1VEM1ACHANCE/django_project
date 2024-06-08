@@ -3,6 +3,7 @@ import json
 from django.core.management.base import BaseCommand
 from operation.models import Event, Subunit, ShowInfo, MasterUnit,SupportUnit,OtherUnit
 from datetime import datetime
+import requests
 
 def translate_date(date):
     return datetime.strptime(date, "%Y/%m/%d").strftime("%Y-%m-%d")
@@ -12,8 +13,10 @@ def translate_time(time):
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        with open('out.json', 'r') as f:
-            data = json.load(f)
+        url = "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=1"
+        response = requests.get(url)
+        data = response.json()
+        if True:
             for item in data:
                 event = Event.objects.create(
                     version=item['version'],

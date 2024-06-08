@@ -5,6 +5,8 @@ import Event from "../components/Notes"
 
 function Home(){
     const [events,setEvents] = useState([])
+    const [searchTitle,setSearchTitle] = useState("")
+    const [isSearch,setIsSearch] = useState(false)
     
     useEffect(()=>{
         getNote()
@@ -30,10 +32,29 @@ function Home(){
 
 
 
-    return <div>
+    return <div style={{
+        display: 'grid',
+        flexWrap: 'wrap',
+        width: '100%',
+        padding: '10px',
+      }}>
+        <div>
+        <h2>Events</h2>
+        </div>
+        <div>
+        
+        <button onClick={() => setIsSearch(true)}>搜尋</button>
+        {isSearch === true?<input type="text" value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)}/>:<></>}
+        </div>
         <div className="event-container">
-            <h2>Events</h2>
-            {events.map((event) =><Event event={event} onDelete={deleteNote} key={event.uid}/>)}
+            {events.map((event) =>{
+                if (isSearch === true){
+                    if (event.title.includes(searchTitle))
+                        return <Event event={event} onDelete={deleteNote} key={event.uid}/>
+                }
+                else
+                    return <Event event={event} onDelete={deleteNote} key={event.uid}/>
+            })}
         </div>
     </div>
 }

@@ -11,7 +11,7 @@ function Event({event}){
           });
     }
     return( 
-    <div className="note-container" onClick={()=>handleOnClick(event)}>
+    <div style={{width: "400px",height:"200px",overflow:"hidden"}} className="note-container" onClick={()=>handleOnClick(event)}>
         <p className="note-title">{event.title}</p>
         <p className="note-content">{event.show_unit}</p>
         <p className="note-content">{event.source_web_name}</p>

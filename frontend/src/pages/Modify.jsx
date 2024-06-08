@@ -9,13 +9,29 @@ function Modify() {
     const location = useLocation()
     const navigate = useNavigate()
     const [eventdetail,setEventDetail] = useState(location.state.event)
+    var [masterunit,setMasterUnit] = useState("")
     function formatDateWithoutSeconds(datetimeString) {
         const date = parseISO(datetimeString);
         return format(date, "yyyy-MM-dd'T'HH:mm");
       }
     
     const updateNote = async(id) => {
-        console.log(eventdetail)
+        eventdetail.masterunits.map((unit,index) => {
+            if(unit.unit_name === "")
+                eventdetail.masterunits.pop(index)
+        })
+        eventdetail.subunits.map((unit,index) => {
+            if(unit.unit_name === "")
+                eventdetail.subunits.pop(index)
+        })
+        eventdetail.supportunits.map((unit,index) => {
+            if(unit.unit_name === "")
+                eventdetail.supportunits.pop(index)
+        })
+        eventdetail.other_units.map((unit,index) => {
+            if(unit.unit_name === "")
+                eventdetail.other_units.pop(index)
+        })
         await api.patch(`/operations/update/${id}/`,eventdetail)
         .then((res) => {
             if (res.status === 200) alert("Note updated")
@@ -24,6 +40,33 @@ function Modify() {
         }).catch((error) => alert(error))
         
     }
+    const handleUnit = (index, event) => {
+        const field = event.target.name
+        setEventDetail((prevState) => {
+            const newSupport = [...prevState[field]];
+            if (event.target.value === ""){
+                newSupport.pop(index)
+            } else{
+                newSupport[index] = {
+                    ...newSupport[index],
+                    unit_name: event.target.value
+                };
+            }
+            return { ...prevState, [field]: newSupport };
+        });
+      };
+      const addUnit = (e) => {
+        const field = e.target.name
+        
+            setEventDetail((prevState) => {
+                console.log(field,prevState[field])
+                const newSupport = [...prevState[field]];
+                newSupport.push({unit_name:"",event:eventdetail.uid})
+                return { ...prevState, [field]: newSupport };
+        });
+      }
+     
+
     const handle_show_info = (e) => {
         const index = e.target.dataset.index;
         const field = e.target.name;
@@ -102,41 +145,70 @@ function Modify() {
         <tr>
                 <td>主辦單位</td>
                 <td>
-            {
-               eventdetail.masterunits.map((unit) => {
-                return <span> {unit.unit_name}</span>
+                {
+               eventdetail.masterunits.map((unit,index) => {
+                return <input className="units"
+                type="text"
+                name="masterunits"
+                style={{width:"50px"}}
+                value={unit.unit_name}
+                onChange={(event) => handleUnit(index, event)}
+              />
                })
             }
+            <button name="masterunits" onClick={addUnit}>增加</button>
             </td>
         </tr>
         <tr>
                 <td>協辦單位</td>
                 <td>
             {
-               eventdetail.subunits.map((unit) => {
-                return <span> {unit.unit_name}</span>
+               eventdetail.subunits.map((unit,index) => {
+                return <input className="units"
+                type="text"
+                name="subunits"
+                style={{width:"50px"}}
+                value={unit.unit_name}
+                onChange={(event) => handleUnit(index, event)}
+              />
                })
             }
+            <button name="subunits" onClick={addUnit}>增加</button>
             </td>
         </tr>
         <tr>
                 <td>贊助單位</td>
                 <td>
             {
-               eventdetail.supportunits.map((unit) => {
-                return <span> {unit.unit_name}</span>
+               eventdetail.supportunits.map((unit,index) => {
+                return <input className="units"
+                type="text"
+                name="supportunits"
+                style={{width:"50px"}}
+                value={unit.unit_name}
+                onChange={(event) => handleUnit(index, event)}
+              />
                })
             }
+            <button name="supportunits" onClick={addUnit}>增加</button>
+            
             </td>
         </tr>
         <tr>
                 <td>其他單位</td>
                 <td>
-            {
-               eventdetail.other_units.map((unit) => {
-                return <span> {unit.unit_name}</span>
+                {
+               eventdetail.other_units.map((unit,index) => {
+                return <input className="units"
+                type="text"
+                name="other_units"
+                style={{width:"50px"}}
+                value={unit.unit_name}
+                onChange={(event) => handleUnit(index, event)}
+              />
                })
             }
+            <button name="other_units" onClick={addUnit}>增加</button>
             </td>
         </tr>
     </table>
