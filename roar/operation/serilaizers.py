@@ -38,6 +38,13 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+    def create(self, validated_data):
+        validated_data.pop('show_info', None)
+        validated_data.pop('masterunits', None)
+        validated_data.pop('subunits', None)
+        validated_data.pop('supportunits', None)
+        validated_data.pop('other_units', None)
+        return Event.objects.create(**validated_data)
     
     def update(self, instance, validated_data):
         instance.show_info.all().delete()

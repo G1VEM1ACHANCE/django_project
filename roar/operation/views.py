@@ -11,6 +11,10 @@ class GetEventView(generics.ListAPIView):
     permission_classes = [AllowAny]
     def get_queryset(self):
         return Event.objects.prefetch_related('show_info', 'masterunits', 'subunits', 'supportunits', 'other_units')
+class CreateEventView(generics.CreateAPIView):
+    serializer_class = EventSerializer
+    permission_classes = [AllowAny]
+
 
 class UpdateEventView(generics.UpdateAPIView):
     serializer_class = EventSerializer

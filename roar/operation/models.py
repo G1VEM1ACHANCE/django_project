@@ -1,8 +1,9 @@
 from django.db import models
+import uuid
 
 class Event(models.Model):
     version = models.CharField(max_length=10)
-    uid = models.CharField(max_length=50, primary_key=True)
+    uid = models.CharField(max_length=50, primary_key=True,default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
     category = models.CharField(max_length=10)
     web_sales = models.URLField(blank=True)

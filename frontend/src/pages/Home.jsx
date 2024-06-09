@@ -2,18 +2,20 @@ import { useEffect, useState } from "react"
 import api from "../api"
 import '../styles/Home.css'
 import Event from "../components/Notes"
+import Create from "./Create"
 
 function Home(){
     const [events,setEvents] = useState([])
     const [searchTitle,setSearchTitle] = useState("")
     const [isSearch,setIsSearch] = useState(false)
+    const [isCreate,setIsCreate] = useState(false)
     
     useEffect(()=>{
         getNote()
     },[])
 
     const getNote = async() => {
-        await api.get("/operations/search/")
+        await api.get("/operation/search/")
         .then((res) => res.data).
         then((data) =>{setEvents(data); console.log(data)})
         .catch((err) => alert(err))
@@ -21,7 +23,7 @@ function Home(){
 
     const deleteNote = async(id) => {
         console.log(id)
-        await api.delete(`/operations/delete/${id}/`)
+        await api.delete(`/operation/delete/${id}/`)
         .then((res) => {
             if (res.status === 204) alert("Note deleted")
             else alert("Fail to delete")
@@ -32,7 +34,7 @@ function Home(){
 
 
 
-    return <div style={{
+    return isCreate?  <Create afterupdate={() =>{setIsCreate(false);getNote()}}/>: <div style={{
         display: 'grid',
         flexWrap: 'wrap',
         width: '100%',
@@ -44,6 +46,7 @@ function Home(){
         <div>
         
         <button onClick={() => setIsSearch(true)}>搜尋</button>
+        <button onClick={()=>{setIsCreate(true)}}>新增活動</button>
         {isSearch === true?<input type="text" value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)}/>:<></>}
         </div>
         <div className="event-container">

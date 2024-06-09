@@ -42,7 +42,9 @@ function Form({route,method}) {
         <input style={{width:"450px"}} className="form-input" type="text" value={username} onChange={(e) =>setUsername(e.target.value)} placeholder="Username" />
         <input style={{width:"450px"}} className="form-input" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} placeholder="password"/>
         <button className="form-button" type="submit">{name}</button>
-
+        {
+           method === "login"? <button type="button" onClick={()=>navigate("/register")}>Register</button>:<></>
+        }
     </form>)
 }
 export default Form

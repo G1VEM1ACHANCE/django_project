@@ -33,7 +33,7 @@ function Modify() {
             if(unit.unit_name === "")
                 eventdetail.other_units.pop(index)
         })
-        await api.patch(`/operations/update/${id}/`,eventdetail)
+        await api.patch(`/operation/update/${id}/`,eventdetail)
         .then((res) => {
             if (res.status === 200) alert("Note updated")
             else alert("Fail to update")
@@ -82,6 +82,15 @@ function Modify() {
             return { ...prevState, show_info: newShowInfo };
         });
     };
+
+    const add_show_info = () => {
+            setEventDetail((prevState) => {
+                const newShow = [...prevState.show_info];
+                newShow.push({time:"2024-12-31T14:00:00Z",on_sales:"N",price:"",end_time:"2024-12-31T14:00:00Z",location:"",location_name:"",longitude:"",latitude:"",event:eventdetail.uid})
+                return { ...prevState, show_info: newShow };
+        });
+      }
+     
     return(
         <div className="info-container">
             活動資訊
@@ -259,6 +268,7 @@ function Modify() {
             )
         })
     }
+    <button onClick={add_show_info}>新增場次</button>
     <button className="modify-button" onClick={() => updateNote(eventdetail.uid)}>
     確定
 </button> 
