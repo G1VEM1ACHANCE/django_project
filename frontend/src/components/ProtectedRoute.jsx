@@ -6,7 +6,6 @@ import {  useEffect, useState } from 'react'
 
 function ProtectedRoute({children})  {
     const [isAuthorized,setAuthorized] = useState(null)
-    console.log(isAuthorized,"aaaaaaa")
     useEffect(() =>{
         auth().catch(() => setAuthorized(false))
     },[])
@@ -28,7 +27,6 @@ function ProtectedRoute({children})  {
     }
     const auth = async() => {
         const token = localStorage.getItem(ACCESS_TOKEN)
-        console.log(token)
         if(!token){
             setAuthorized(false)
         }

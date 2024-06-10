@@ -16,7 +16,6 @@ function Modify() {
       }
     
     const updateNote = async(id) => {
-        console.log("aaa",eventdetail)
         eventdetail.masterunits.map((unit,index) => {
             if(unit.unit_name === "")
                 eventdetail.masterunits.pop(index)
@@ -60,7 +59,6 @@ function Modify() {
         const field = e.target.name
         
             setEventDetail((prevState) => {
-                console.log(field,prevState[field])
                 const newSupport = [...prevState[field]];
                 newSupport.push({unit_name:"",event:eventdetail.uid})
                 return { ...prevState, [field]: newSupport };

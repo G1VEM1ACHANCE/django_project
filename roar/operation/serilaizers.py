@@ -55,22 +55,27 @@ class EventSerializer(serializers.ModelSerializer):
         show_info_data = validated_data.pop('show_info', None)
         if show_info_data is not None:
             for show_info_item in show_info_data:
+                show_info_item['event'] = Event.objects.get(uid=validated_data['uid'])
                 ShowInfo.objects.create(**show_info_item)
         masterUnits = validated_data.pop('masterunits', None)
         if masterUnits is not None:
             for units in masterUnits:
+                units['event'] = Event.objects.get(uid=validated_data['uid'])
                 MasterUnit.objects.create(**units)
         subUnits = validated_data.pop('subunits', None)
         if subUnits is not None:
             for units in subUnits:
+                units['event'] = Event.objects.get(uid=validated_data['uid'])
                 Subunit.objects.create(**units)
         supportUnits = validated_data.pop('supportunits', None)
         if supportUnits is not None:
             for units in supportUnits:
+                units['event'] = Event.objects.get(uid=validated_data['uid'])
                 SupportUnit.objects.create(**units)
         otherUnits = validated_data.pop('other_units', None)
         if otherUnits is not None:
             for units in otherUnits:
+                units['event'] = Event.objects.get(uid=validated_data['uid'])
                 OtherUnit.objects.create(**units)
         uid = validated_data.pop('uid', None)
         instance.title = validated_data.pop('title',None)
@@ -86,7 +91,6 @@ class EventSerializer(serializers.ModelSerializer):
         instance.discount_info = validated_data.pop('discount_info',None)
         instance.descriptionFilterHtml = validated_data.pop('descriptionFilterHtml',None)
         instance.imageUrl = validated_data.pop('imageUrl',None)
-        print(validated_data)
         instance.save()
         return instance
 

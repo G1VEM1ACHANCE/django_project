@@ -19,12 +19,11 @@ function Home(){
     const getNote = async() => {
         await api.get("/operation/")
         .then((res) => res.data).
-        then((data) =>{setEvents(data); console.log(data)})
+        then((data) =>{setEvents(data);})
         .catch((err) => alert(err))
     }
 
     const deleteNote = async(id) => {
-        console.log(id)
         await api.delete(`/operation/`,{uid:id})
         .then((res) => {
             if (res.status === 204) alert("Event deleted")

@@ -19,7 +19,6 @@ function Create() {
             else alert("Fail to create")
         }).catch((error) => console.log(error))
         navigate('/')
-        console.log(eventdetail)
     }
      
     return(

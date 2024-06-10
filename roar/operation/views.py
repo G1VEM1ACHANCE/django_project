@@ -19,7 +19,6 @@ from rest_framework.views import APIView
 class operation_view(APIView):
     def get_permissions(self):
         access_token = self.request.headers.get('Authorization')
-        print("Access token:", access_token)
         if self.request.method == 'GET':
             return [AllowAny()]
         elif self.request.method == 'POST':
@@ -49,7 +48,6 @@ class operation_view(APIView):
             event = Event.objects.get(uid=data['uid'])
         except Event.DoesNotExist:
             return JsonResponse({'message': 'The event does not exist'}, status=404)
-        print("event")
         
         serializer = EventSerializer(event, data=data)
         if serializer.is_valid():
@@ -60,7 +58,6 @@ class operation_view(APIView):
     def delete(self,request):
         # Handle deletion operation
         data = JSONParser().parse(request)
-        print(data)
         try:
             event = Event.objects.get(uid=data['uid'])
         except Event.DoesNotExist:

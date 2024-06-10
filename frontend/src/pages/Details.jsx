@@ -9,7 +9,6 @@ function Details({handleModify}) {
     const navigate = useNavigate()
     const [eventdetail,setEventDetail] = useState(location.state.event)
     const deleteNote = async(id) => {
-        console.log(id)
         await api.delete(`/operation/`,{data:{uid:id}})
         .then((res) => {
             if (res.status === 204) alert("Event deleted")
@@ -18,7 +17,6 @@ function Details({handleModify}) {
         }).catch((error) => alert(error))
         
     }
-    console.log(eventdetail)
     return(
         <div>
             <h1>活動資訊</h1>
