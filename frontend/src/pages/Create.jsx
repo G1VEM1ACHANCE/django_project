@@ -5,7 +5,7 @@ import api from "../api"
 import { useNavigate } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
 
-function Create({afterupdate}) {
+function Create() {
 
     const navigate = useNavigate()
     const [eventdetail,setEventDetail] = useState({category:"",comment:"",descriptionFilterHtml:"",discount_info:"",end_date:"",hit_rate:"",imageUrl:"",show_unit:"",source_web_name:"",source_web_promote:"",start_date:"",title:"",web_sales:"",show_info:[],masterunits:[],subunits:[],supportunits:[],other_units:[],event:"",version:"1"})
@@ -18,7 +18,7 @@ function Create({afterupdate}) {
             if (res.status === 201) alert("created")
             else alert("Fail to create")
         }).catch((error) => console.log(error))
-        afterupdate()
+        navigate('/')
         console.log(eventdetail)
     }
      
