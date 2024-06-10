@@ -16,7 +16,7 @@ class Command(BaseCommand):
         url = "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=1"
         response = requests.get(url)
         data = response.json()
-        if True:
+        if data:
             for item in data:
                 event = Event.objects.create(
                     version=item['version'],
