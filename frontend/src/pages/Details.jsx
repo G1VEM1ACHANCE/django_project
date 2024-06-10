@@ -10,9 +10,9 @@ function Details({handleModify}) {
     const [eventdetail,setEventDetail] = useState(location.state.event)
     const deleteNote = async(id) => {
         console.log(id)
-        await api.delete(`/operation/delete/${id}/`)
+        await api.delete(`/operation/`,{data:{uid:id}})
         .then((res) => {
-            if (res.status === 204) alert("Note deleted")
+            if (res.status === 204) alert("Event deleted")
             else alert("Fail to delete")
             navigate('/')
         }).catch((error) => alert(error))

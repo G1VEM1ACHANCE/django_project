@@ -17,7 +17,7 @@ function Home(){
     },[])
 
     const getNote = async() => {
-        await api.get("/operation/search/")
+        await api.get("/operation/")
         .then((res) => res.data).
         then((data) =>{setEvents(data); console.log(data)})
         .catch((err) => alert(err))
@@ -25,9 +25,9 @@ function Home(){
 
     const deleteNote = async(id) => {
         console.log(id)
-        await api.delete(`/operation/delete/${id}/`)
+        await api.delete(`/operation/`,{uid:id})
         .then((res) => {
-            if (res.status === 204) alert("Note deleted")
+            if (res.status === 204) alert("Event deleted")
             else alert("Fail to delete")
             getNote()
         }).catch((error) => alert(error))

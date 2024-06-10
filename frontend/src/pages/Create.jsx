@@ -8,12 +8,12 @@ import { format, parseISO } from 'date-fns';
 function Create() {
 
     const navigate = useNavigate()
-    const [eventdetail,setEventDetail] = useState({category:"",comment:"",descriptionFilterHtml:"",discount_info:"",end_date:"",hit_rate:"",imageUrl:"",show_unit:"",source_web_name:"",source_web_promote:"",start_date:"",title:"",web_sales:"",show_info:[],masterunits:[],subunits:[],supportunits:[],other_units:[],event:"",version:"1"})
+    const [eventdetail,setEventDetail] = useState({category:"",comment:"",descriptionFilterHtml:"",discount_info:"",end_date:"",hit_rate:"",imageUrl:"",show_unit:"",source_web_name:"",source_web_promote:"",start_date:"",title:"",web_sales:"",show_info:[],masterunits:[],subunits:[],supportunits:[],other_units:[],version:"1"})
 
     
     const updateNote = async(id) => {
         
-        await api.post(`/operation/create/`,eventdetail)
+        await api.post(`/operation/`,eventdetail)
         .then((res) => {
             if (res.status === 201) alert("created")
             else alert("Fail to create")

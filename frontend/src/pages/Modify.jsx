@@ -16,7 +16,7 @@ function Modify() {
       }
     
     const updateNote = async(id) => {
-        console.log(eventdetail)
+        console.log("aaa",eventdetail)
         eventdetail.masterunits.map((unit,index) => {
             if(unit.unit_name === "")
                 eventdetail.masterunits.pop(index)
@@ -33,9 +33,9 @@ function Modify() {
             if(unit.unit_name === "")
                 eventdetail.other_units.pop(index)
         })
-        await api.patch(`/operation/update/${id}/`,eventdetail)
+        await api.put(`/operation/`,eventdetail)
         .then((res) => {
-            if (res.status === 200) alert("Note updated")
+            if (res.status === 201) alert("Event updated")
             else alert("Fail to update")
             navigate('/')
         }).catch((error) => alert(error))

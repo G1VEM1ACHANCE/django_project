@@ -32,6 +32,7 @@ def delete_and_update():
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
     # Schedule the job to run every day at 1:00 AM
-    scheduler.add_job(delete_and_update, 'cron', hour=13,minute=58)
+    scheduler.add_job(delete_and_update, 'cron', hour=15,minute=00)
+    # delete_and_update()
     #connect_mongo()
     scheduler.start()
