@@ -5,6 +5,10 @@ div {
     display: inline-block;
 
   }
+ 
+ h2 {
+    color:black;
+ }
   
   /* Styles for the notes section */
   .notes-section {

@@ -158,13 +158,13 @@ function Modify() {
                 return <input className="units"
                 type="text"
                 name="masterunits"
-                style={{width:"50px"}}
+                style={{width:"100px"}}
                 value={unit.unit_name}
                 onChange={(event) => handleUnit(index, event)}
               />
                })
             }
-            <button name="masterunits" onClick={addUnit}>增加</button>
+            <button className="addUnitButton" name="masterunits" onClick={addUnit}>增加</button>
             </td>
         </tr>
         <tr>
@@ -175,13 +175,13 @@ function Modify() {
                 return <input className="units"
                 type="text"
                 name="subunits"
-                style={{width:"50px"}}
+                style={{width:"100px"}}
                 value={unit.unit_name}
                 onChange={(event) => handleUnit(index, event)}
               />
                })
             }
-            <button name="subunits" onClick={addUnit}>增加</button>
+            <button className="addUnitButton" name="subunits" onClick={addUnit}>增加</button>
             </td>
         </tr>
         <tr>
@@ -192,13 +192,13 @@ function Modify() {
                 return <input className="units"
                 type="text"
                 name="supportunits"
-                style={{width:"50px"}}
+                style={{width:"100px"}}
                 value={unit.unit_name}
                 onChange={(event) => handleUnit(index, event)}
               />
                })
             }
-            <button name="supportunits" onClick={addUnit}>增加</button>
+            <button className="addUnitButton" name="supportunits" onClick={addUnit}>增加</button>
             
             </td>
         </tr>
@@ -210,13 +210,13 @@ function Modify() {
                 return <input className="units"
                 type="text"
                 name="other_units"
-                style={{width:"50px"}}
+                style={{width:"100px"}}
                 value={unit.unit_name}
                 onChange={(event) => handleUnit(index, event)}
               />
                })
             }
-            <button name="other_units" onClick={addUnit}>增加</button>
+            <button className="addUnitButton" name="other_units" onClick={addUnit}>增加</button>
             </td>
         </tr>
     </table>
