@@ -50,8 +50,8 @@ function Home(){
         
         
         {isSearch === true?<div><input type="text" value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)}/></div>:<></>}
-        <button className="addUnitButton" onClick={() => setIsSearch(true)}>搜尋</button>
-        <button className="addUnitButton" onClick={()=>{navigate('/create')}}>新增活動</button>
+        <button onClick={() => setIsSearch(true)}>搜尋</button>
+        <button onClick={()=>{navigate('/create')}}>新增活動</button>
         </div>
         <div className="event-container">
             {events.map((event) =>{

@@ -17,8 +17,18 @@ function Create() {
         .then((res) => {
             if (res.status === 201) alert("created")
             else alert("Fail to create")
-        }).catch((error) => console.log(error))
-        navigate('/')
+            navigate('/')
+        }).catch((error) => {
+            var message = ""
+            const jsonObj = JSON.parse(error.request.response);
+            if (error.response.status === 400)
+                Object.keys(jsonObj).forEach(key => {
+                        message += key + ": "+jsonObj[key][0] + "\n"   // 'value1', 'value2', 'value3'
+                });
+            else if (error.response.status === 401)
+                message = jsonObj['detail']
+            alert(message)
+        })
     }
      
     return(
