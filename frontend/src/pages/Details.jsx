@@ -14,7 +14,17 @@ function Details({handleModify}) {
             if (res.status === 204) alert("Event deleted")
             else alert("Fail to delete")
             navigate('/')
-        }).catch((error) => alert(error))
+        }).catch((error) =>{
+            const jsonObj = JSON.parse(error.request.response);
+            var message = ""
+            if (error.response.status === 400)
+                Object.keys(jsonObj).forEach(key => {
+                        message += key + ": "+jsonObj[key][0] + "\n"   // 'value1', 'value2', 'value3'
+                });
+            else if (error.response.status === 401)
+                message = jsonObj['detail']
+            alert(message)
+        })
         
     }
     return(

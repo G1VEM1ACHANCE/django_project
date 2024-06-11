@@ -9,7 +9,6 @@ function Home(){
     const [events,setEvents] = useState([])
     const [searchTitle,setSearchTitle] = useState("")
     const [isSearch,setIsSearch] = useState(false)
-    const [isCreate,setIsCreate] = useState(false)
     const navigate = useNavigate()
     
     useEffect(()=>{
@@ -41,6 +40,7 @@ function Home(){
         width: '100%',
         padding: '10px',
       }}>
+        <button type="button" style={{position:"fixed",top:"10px",right:"120px",backgroundColor:"#3d7cc5"}}onClick={()=>{navigate('/login')}}>Login</button>
         <button type="button" style={{position:"fixed",top:"10px",right:"10px",backgroundColor:"#3d7cc5"}}onClick={()=>{navigate('/logout')}}>Logout</button>
         <div>
         <h2>Events</h2>

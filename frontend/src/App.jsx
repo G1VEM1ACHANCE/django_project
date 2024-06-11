@@ -11,7 +11,7 @@ import Create from './pages/Create'
 
 function Logout() {
   localStorage.clear()
-  return <Navigate to="/login" />
+  return <Navigate to="/" />
 }
 
 function RegisterLogout(){
@@ -23,12 +23,12 @@ function App() {
 return (
   <BrowserRouter>
   <Routes>
-  <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>}/>
-  <Route path='/event/:id' element={<ProtectedRoute><EventDetail /></ProtectedRoute>}/>
+  <Route path='/' element={<Home />}/>
+  <Route path='/event/:id' element={<EventDetail />}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/logout' element={<Logout/>}/>
     <Route path='/register' element={<RegisterLogout/>}/>
-    <Route path='/create' element={<Create/>}/>
+    <Route path='/create' element={<ProtectedRoute><Create/></ProtectedRoute>}/>
     <Route path='*' element={<NotFound/>}/>
   </Routes>
   </BrowserRouter>
